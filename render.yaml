@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: conductor-companion
+    runtime: node
+    plan: free
+    # Node 22.13+ is needed for built-in SQLite
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@depot.test
+      - key: ADMIN_PASSWORD
+        sync: false
